@@ -1,24 +1,47 @@
 import React from "react";
+import NavButton from "./NavButton";
 
-const ActionButtons = ({ state, setPrevStep, setNextStep, setStart }) => {
-  return (
-    <div className="inline block">
-      <div className="footer">
-        <div className="row">
-          <button className="btn btn-primary left" onClick={setPrevStep}>
-            Previous
-          </button>
-          <button className="btn btn-primary right" onClick={setNextStep}>
-            Next
-          </button>
+const ActionButtons = ({ step, nextStep, startAgain }) => {
+  let classesNext = "btn btn-primary left";
+  let classesStart = "btn btn-primary left";
+  let classesCancel = "btn btn-primary right";
+
+  switch (step) {
+    case 1:
+      return (
+        <div className="actionButtons">
+          <NavButton name="Next" classes={classesNext} clickAction={nextStep} />
+          <NavButton
+            name="Cancel"
+            classes={classesCancel}
+            clickAction={startAgain}
+          />
         </div>
-        <div className="row" />
-        <button className="btn btn-primary right" onClick={setStart}>
-          Start over again...
-        </button>
-      </div>
-    </div>
-  );
+      );
+    case 2:
+      return (
+        <div className="actionButtons">
+          <NavButton name="Next" classes={classesNext} clickAction={nextStep} />
+          <NavButton
+            name="Cancel"
+            classes={classesCancel}
+            clickAction={startAgain}
+          />
+        </div>
+      );
+    case 3:
+      return (
+        <div className="actionButtons">
+          <NavButton
+            name="Start over"
+            classes={classesStart}
+            clickAction={startAgain}
+          />
+        </div>
+      );
+  }
+
+  return <div className="card-footer" />;
 };
 
 export default ActionButtons;
